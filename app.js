@@ -16,12 +16,15 @@ const createNewTaskElement = function (taskString) {
   const deleteButton = document.createElement("button");
   const deleteButtonImg = document.createElement("img");
 
+  listItem.className = 'todo-list-item';
+
   label.innerText = taskString;
-  label.className = 'task';
+  label.className = 'task task-label';
 
   checkBox.type = "checkbox";
+  checkBox.className = 'task-checkbox';
   editInput.type = "text";
-  editInput.className = "task";
+  editInput.className = "editable task";
 
   editButton.innerText = "Edit";
   editButton.className = "edit";
@@ -29,6 +32,7 @@ const createNewTaskElement = function (taskString) {
   deleteButton.className = "delete";
   deleteButtonImg.src = './remove.svg';
   deleteButtonImg.alt = 'Remove';
+  deleteButtonImg.className = 'delete-btn__image';
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -93,6 +97,8 @@ const taskCompleted = function () {
   console.log("Complete Task...");
 
   const listItem = this.parentNode;
+  listItem.classList.toggle('completed-list-item');
+  listItem.classList.toggle('todo-list-item');
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
 
@@ -102,6 +108,8 @@ const taskCompleted = function () {
 const taskIncomplete = function () {
   console.log("Incomplete Task...");
   const listItem = this.parentNode;
+  listItem.classList.toggle('completed-list-item');
+  listItem.classList.toggle('todo-list-item');
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
 };
